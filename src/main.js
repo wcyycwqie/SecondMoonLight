@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-
+import router from '@/router'
+//使用elementUI框架
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 /* 
   productionTip 配置vue框架的日志级别  
@@ -10,8 +12,9 @@ import router from './router'
 */
 Vue.config.productionTip = false
 
+Vue.use(ElementUI)
+
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
-

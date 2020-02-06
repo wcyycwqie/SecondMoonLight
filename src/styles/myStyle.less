@@ -1,0 +1,51 @@
+/**
+ * 
+ * @authors YYM
+ * @date    2019-12-20 09:55:11
+ * @version $V1.0$
+ */
+
+// 公共属性
+@colorOne: #66CCFF;
+@bgColorOne: #ff4e4e48;
+@bgColorTwo: #50b6fa5b;
+@fColor: #660C0B;
+@minutes: 60s;
+@rateG : 0.618;
+
+// 公共样式
+.Wh(@w, @h) {
+  width: @w;
+  height: @h;
+}
+
+.BoxRadius(@tl: 15px, @tr: 15px, @bl: 15px, @br: 15px) {
+  border-top-left-radius: @tl;
+  border-top-right-radius: @tr;
+  border-bottom-left-radius: @bl;
+  border-bottom-right-radius: @br;
+}
+
+.PublicBox(@w: 100%, @h, @bgColor) {
+  width: @w;
+  height: @h;
+  background: @bgColor;
+}
+
+.Pre(@style, @value) {
+  -webkit-@{style}: @value;
+  -mos-@{style}: @value;
+  -ms-@{style}: @value;
+  @{style}: @value;
+}
+
+//字体背景
+.FontBg (@direct, @colorOne, @colorTwo) {
+  background: linear-gradient(@direct, @colorOne, @colorTwo);
+  -webkit-background-clip: text;
+  -mos-background-clip: text;
+  -ms-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}

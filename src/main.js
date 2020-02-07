@@ -4,6 +4,9 @@ import router from '@/router'
 //使用elementUI框架
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
+//全局注册axios
+Vue.prototype.$axios = axios
 
 /* 
   productionTip 配置vue框架的日志级别  

@@ -29,21 +29,24 @@
                 v-model="loginForm.password"
               ></el-input>
             </el-form-item>
-            <el-form-item label="手机号码" prop="phone">
+            <el-form-item label="手机号码" prop="mobile">
               <el-input
                 placeholder="请输入手机号码"
-                v-model="loginForm.phone"
+                v-model="loginForm.mobile"
               ></el-input>
             </el-form-item>
             <el-form-item label="验证码">
               <el-input
                 placeholder="请输入验证码"
                 style="width:210px;margin-right:15px;"
+                v-model="loginForm.code"
               ></el-input>
               <el-button>发送验证码</el-button>
             </el-form-item>
             <el-form-item class="form-footer">
-              <el-button :class="{ 'btn-login': true }">登录</el-button>
+              <el-button :class="{ 'btn-login': true }" @click="login()"
+                >登录</el-button
+              >
               <el-button disabled>注册</el-button>
             </el-form-item>
           </el-form>
@@ -54,22 +57,26 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+
 export default {
   name: 'Login',
   data () {
     // 自定义校验
     // 手机号码格式校验
-    const phoneNumCheck = (rule, value, callback) => {
+    const mobileNumCheck = (rule, value, callback) => {
       if (!/^1[3-9]\d{9}$/.test(value)) {
         return callback(new Error('手机号格式不对'))
       }
+      callback()
     }
 
     return {
       loginForm: {
         name: 'admin',
         password: '123456',
-        phone: ''
+        mobile: '13911111111',
+        code: '246810'
       },
       loginRules: {
         name: [
@@ -78,10 +85,31 @@ export default {
         password: [
           { required: true, message: '密码不能为空', trigger: 'blur' }
         ],
-        phone: [
-          { validator: phoneNumCheck, trigger: 'blur' }
+        mobile: [
+          { validator: mobileNumCheck, trigger: 'blur' }
         ]
       }
+    }
+  },
+  methods: {
+    // 登录
+    login () {
+      console.log('login!')
+      this.$refs.loginForm.validate(async (valid) => {
+        if (valid) {
+          console.log('true')
+          this.$axios
+            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
+            .then(res => {
+              console.log(res)
+              this.$router.push('/')
+            })
+            .catch(err => {
+              console.log('error')
+            })
+        }
+      })
+
     }
   }
 }
@@ -107,7 +135,7 @@ export default {
     width: 500px;
     // height: 500px * @gRate;
     .el-card {
-      background: #FFFFFFAA;
+      background: #ffffffaa;
       .img-logo {
         display: block;
         margin: 0 auto 20px;

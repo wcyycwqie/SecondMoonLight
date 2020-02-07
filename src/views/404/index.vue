@@ -5,7 +5,7 @@
         <h1>404</h1>
         <el-row class="goback">
           <el-button type="primary">
-            <router-link to="/">
+            <router-link to="/login">
               回到登录页
             </router-link>
           </el-button>

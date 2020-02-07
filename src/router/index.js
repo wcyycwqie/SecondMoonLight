@@ -4,6 +4,7 @@ import Router from 'vue-router'
 //引入组件
 import Login from '@/views/login/login'
 import NotFound from '@/views/404'
+import Home from '@/views/home'
 
 Vue.use(Router)
 
@@ -11,9 +12,14 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [{
-    path: '/',
+    path: '/login',
     name: 'root',
     component: Login
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: Home
   },
   {
     path: '*',

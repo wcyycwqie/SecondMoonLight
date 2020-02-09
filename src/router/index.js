@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Login from '@/views/login/login'
 import NotFound from '@/views/404'
 import Home from '@/views/home'
+import Welcome from '@/views/welcome'
 
 Vue.use(Router)
 
@@ -19,7 +20,14 @@ const router = new Router({
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/',
+        name: 'welcome',
+        component: Welcome
+      }
+    ]
   },
   {
     path: '*',

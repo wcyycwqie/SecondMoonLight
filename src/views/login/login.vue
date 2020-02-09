@@ -145,6 +145,7 @@ export default {
       .form-footer {
         .el-button {
           width: 150px;
+          
         }
       }
     }

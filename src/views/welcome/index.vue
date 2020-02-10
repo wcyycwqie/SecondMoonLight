@@ -14,7 +14,7 @@ export default {
   height: 100%;
   background: url('../../assets/img/2.png') no-repeat center;
   background-size: cover;
-  filter: opacity(88%);
+  // filter: opacity(88%);
 }
 </style>
 <style>

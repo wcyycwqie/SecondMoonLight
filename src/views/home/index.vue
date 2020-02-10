@@ -5,15 +5,16 @@
       <el-aside class="my-aside" width="200px">
         <div class="logo"></div>
         <el-menu
-          default-active="1"
+          default-active="this.$route"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
+          router
         >
-          <el-menu-item index="1">
+          <el-menu-item index="/">
             <i class="el-icon-s-home"></i>
             <span slot="title">首页</span> </el-menu-item
-          ><el-menu-item index="2">
+          ><el-menu-item index="/article">
             <i class="el-icon-document"></i>
             <span slot="title">内容管理</span> </el-menu-item
           ><el-menu-item index="3">
@@ -64,6 +65,11 @@ export default {
     return {
       name: ''
     }
+  },
+  created () {
+    console.log(this.$route)
+    console.log(this.$router)
+
   },
   methods: {
     handleOpen (key, keyPath) {

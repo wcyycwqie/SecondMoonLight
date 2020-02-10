@@ -4,11 +4,11 @@
       <el-main>
         <h1>404</h1>
         <el-row class="goback">
-          <el-button type="primary">
-            <router-link to="/login">
+          <router-link to="/login">
+            <el-button type="primary">
               回到登录页
-            </router-link>
-          </el-button>
+            </el-button>
+          </router-link>
         </el-row>
       </el-main>
     </el-container>

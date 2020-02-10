@@ -14,33 +14,40 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [{
-    path: '/login',
-    name: 'root',
-    component: Login
-  },
-  {
-    path: '/',
-    component: Home,
-    children: [
-      {
-        path: '/',
-        name: 'welcome',
-        component: Welcome
-      },
-      {
-        path: '/article',
-        name: 'article',
-        component: Article
-      }
-    ]
-  },
-  {
-    path: '*',
-    name: 'NotFound',
-    component: NotFound
-  }
-]
+      path: '/login',
+      name: 'root',
+      component: Login
+    },
+    {
+      path: '/',
+      component: Home,
+      children: [{
+          path: '/',
+          name: 'welcome',
+          component: Welcome
+        },
+        {
+          path: '/article',
+          name: 'article',
+          component: Article
+        }
+      ]
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
+    }
+  ]
 
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('**************')
+  console.log(to)
+  console.log(from);
+  console.log('**************')
+  next()
 })
 
 export default router

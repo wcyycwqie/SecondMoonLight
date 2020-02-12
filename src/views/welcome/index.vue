@@ -12,7 +12,7 @@ export default {
 .welcome {
   width: 100%;
   height: 100%;
-  background: url('../../assets/img/2.png') no-repeat center;
+  background: url('../../assets/img/1.png') no-repeat center;
   background-size: cover;
   // filter: opacity(88%);
 }

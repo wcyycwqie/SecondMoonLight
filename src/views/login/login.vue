@@ -98,7 +98,7 @@ export default {
       this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           console.log('true')
-          this.$axios
+          await this.$axios
             .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
             .then(res => {
               console.log(res)
@@ -108,6 +108,7 @@ export default {
               console.log('error')
             })
         }
+
       })
 
     }
@@ -145,7 +146,6 @@ export default {
       .form-footer {
         .el-button {
           width: 150px;
-          
         }
       }
     }

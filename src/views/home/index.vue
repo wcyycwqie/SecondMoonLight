@@ -2,13 +2,16 @@
   <div class="home">
     <el-container class="container-home">
       <!-- 侧边栏 -->
-      <el-aside class="my-aside" width="200px">
-        <div class="logo"></div>
+      <el-aside class="my-aside" :width="isOpen ? '200px' : '64px'" 
+      >
+        <div class="logo" :class="{minLogo: !isOpen}"></div>
         <el-menu
           default-active="this.$route"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
+          :collapse="!isOpen"
+          :collapse-transition="false"
           router
         >
           <el-menu-item index="/">
@@ -36,8 +39,9 @@
         </el-menu>
       </el-aside>
       <el-container>
+        <!-- 头部导航栏 -->
         <el-header class="my-header">
-          <i class="el-icon-s-fold icon"></i>
+          <i class="el-icon-s-fold icon" @click="togggleMenu"></i>
           <span class="text">Lucky day</span>
           <el-dropdown>
             <span class="el-dropdown-link">
@@ -51,6 +55,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
+        <!-- 中心内容区域 -->
         <el-main class="my-main">
           <router-view></router-view>
         </el-main>
@@ -63,7 +68,8 @@
 export default {
   data () {
     return {
-      name: ''
+      name: '',
+      isOpen: true,
     }
   },
   created () {
@@ -75,6 +81,9 @@ export default {
     handleOpen (key, keyPath) {
     },
     handleClose (key, keyPath) {
+    },
+    togggleMenu () {
+      this.isOpen = !this.isOpen
     }
   }
 
@@ -104,6 +113,10 @@ a {
       background: #ea91c1 url('../../assets/logo2.png') no-repeat center/140px
         auto;
       // background-size: contain;
+    }
+    .minLogo {
+      background: #ea91c1 url('../../assets/logo-mini.png') no-repeat center/32px
+        auto;
     }
     .el-menu {
       background: transparent;

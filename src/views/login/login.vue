@@ -58,6 +58,7 @@
 
 <script>
 /* eslint-disable no-console */
+import auth from '@/auth'
 
 export default {
   name: 'Login',
@@ -102,6 +103,7 @@ export default {
             .post('authorizations', this.loginForm)
             .then(res => {
               console.log(res)
+              auth.setUser(res.data.data)
               this.$router.push('/')
             })
             .catch(err => {

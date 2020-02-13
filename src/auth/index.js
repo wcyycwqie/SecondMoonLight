@@ -2,7 +2,7 @@ const Key = 'key-name-WarmHeart'
 
 export default {
     getUser() {
-        return JSON.parse(sessionStorage.getItem(Key))
+        return JSON.parse(sessionStorage.getItem(Key) || '{}')
     },
     setUser(user) {
         sessionStorage.setItem(Key, JSON.stringify(user))

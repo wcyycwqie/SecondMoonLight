@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import auth from '@/auth'
 
 //引入组件
 import Login from '@/views/login/login'
@@ -48,7 +49,7 @@ router.beforeEach((to, from, next) => {
   console.log(to)
   console.log(from);
   console.log('**************')
-  // if (to.path !== '/login') return next('/login')
+  if (to.path !== '/login' && !auth.getUser().token) return next('/login')
   next()
 })
 

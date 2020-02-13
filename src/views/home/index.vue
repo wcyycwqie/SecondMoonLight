@@ -42,19 +42,22 @@
         <el-header class="my-header">
           <i class="el-icon-s-fold icon" @click="togggleMenu"></i>
           <span class="text">Lucky day</span>
-          <el-dropdown>
+          <el-dropdown @command="dropMenuClick">
             <span class="el-dropdown-link">
+              <!-- 用户信息 -->
               <div class="userLogo">
-                <img src="@/assets/user-logo.jpg" alt="" width="32" />
+                <img :src="userLogo" alt="" width="32" />
               </div>
 
-              <strong class="userName">YYM</strong>
+              <strong class="userName">{{ userName }}</strong>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人信息</el-dropdown-item>
-              <el-dropdown-item>
-                <router-link to="/login">退出登录</router-link>
+              <el-dropdown-item command="userSetting"
+                >个人设置</el-dropdown-item
+              >
+              <el-dropdown-item command="logout">
+                退出登录
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -69,16 +72,22 @@
 </template>
 
 <script>
+import auth from '@/auth'
+
 export default {
   data () {
     return {
-      name: '',
       isOpen: true,
+      userLogo: '',
+      userName: ''
     }
   },
   created () {
     console.log(this.$route)
     console.log(this.$router)
+    const userData = auth.getUser()
+    this.userLogo = userData.photo
+    this.userName = userData.name
 
   },
   methods: {
@@ -88,6 +97,15 @@ export default {
     },
     togggleMenu () {
       this.isOpen = !this.isOpen
+    },
+    logout () {
+      auth.delUser()
+      this.$router.push('/login')
+    },
+    dropMenuClick (command) {
+      if (command == 'logout') {
+        this.logout()
+      }
     }
   }
 

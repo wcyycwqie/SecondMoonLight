@@ -4,7 +4,7 @@ import router from '@/router'
 //使用elementUI框架
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import axios from 'axios'
+import axios from '@/api'
 //全局注册axios
 Vue.prototype.$axios = axios
 

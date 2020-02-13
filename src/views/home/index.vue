@@ -2,9 +2,8 @@
   <div class="home">
     <el-container class="container-home">
       <!-- 侧边栏 -->
-      <el-aside class="my-aside" :width="isOpen ? '200px' : '64px'" 
-      >
-        <div class="logo" :class="{minLogo: !isOpen}"></div>
+      <el-aside class="my-aside" :width="isOpen ? '200px' : '64px'">
+        <div class="logo" :class="{ minLogo: !isOpen }"></div>
         <el-menu
           default-active="this.$route"
           class="el-menu-vertical-demo"
@@ -45,7 +44,12 @@
           <span class="text">Lucky day</span>
           <el-dropdown>
             <span class="el-dropdown-link">
-              下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+              <div class="userLogo">
+                <img src="@/assets/user-logo.jpg" alt="" width="32" />
+              </div>
+
+              <strong class="userName">YYM</strong>
+              <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人信息</el-dropdown-item>
@@ -115,8 +119,8 @@ a {
       // background-size: contain;
     }
     .minLogo {
-      background: #ea91c1 url('../../assets/logo-mini.png') no-repeat center/32px
-        auto;
+      background: #ea91c1 url('../../assets/logo-mini.png') no-repeat
+        center/32px auto;
     }
     .el-menu {
       background: transparent;
@@ -152,6 +156,25 @@ a {
 
     .el-dropdown {
       float: right;
+
+      .userLogo {
+        display: inline-block;
+        vertical-align: middle;
+        width: 48px;
+        height: 48px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border: 0 solid #fff;
+          border-radius: 50%;
+        }
+      }
+      .userName {
+        margin-left: 10px;
+        font-size: 16px;
+        vertical-align: middle;
+      }
     }
     .el-dropdown-link {
       cursor: pointer;

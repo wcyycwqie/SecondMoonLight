@@ -99,7 +99,7 @@ export default {
         if (valid) {
           console.log('true')
           await this.$axios
-            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
+            .post('authorizations', this.loginForm)
             .then(res => {
               console.log(res)
               this.$router.push('/')

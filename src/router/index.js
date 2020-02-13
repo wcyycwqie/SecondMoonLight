@@ -42,11 +42,13 @@ const router = new Router({
 
 })
 
+// 前置导航守卫
 router.beforeEach((to, from, next) => {
   console.log('**************')
   console.log(to)
   console.log(from);
   console.log('**************')
+  // if (to.path !== '/login') return next('/login')
   next()
 })
 

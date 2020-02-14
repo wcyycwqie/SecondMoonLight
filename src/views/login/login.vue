@@ -96,6 +96,7 @@ export default {
     // 登录
     login () {
       console.log('login!')
+      console.log(this.$axios.defaults)
       this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           console.log('true')

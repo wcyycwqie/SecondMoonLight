@@ -10,6 +10,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      
+    }
+  },
+  created () {
+    this.$axios
+    .get('articles')
+    .then(res => (
+      console.log(res)
+    ))
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
 }
 </script>

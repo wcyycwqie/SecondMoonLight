@@ -14,6 +14,7 @@ axios.interceptors.request.use(function (config) {
   }
   return config
 }, function (error) {
+  console.log('不存在token')
   return Promise.reject(error)
 })
 

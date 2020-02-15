@@ -11,10 +11,11 @@ axios.interceptors.request.use(function (config) {
   const userInfo = auth.getUser()
   if (userInfo.token) {
     config.headers.Authorization = `Bearer ${userInfo.token}`
+  } else {
+    console.log('不存在token')
   }
   return config
 }, function (error) {
-  console.log('不存在token')
   return Promise.reject(error)
 })
 

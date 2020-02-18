@@ -100,16 +100,27 @@ export default {
       this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           console.log('true')
-          await this.$axios
-            .post('authorizations', this.loginForm)
-            .then(res => {
-              console.log(res)
-              auth.setUser(res.data.data)
-              this.$router.push('/')
-            })
-            .catch(err => {
-              console.log('error')
-            })
+          // this.$axios
+          //   .post('authorizations', this.loginForm)
+          //   .then(res => {
+          //     console.log(res)
+          //     auth.setUser(res.data.data)
+          //     this.$router.push('/')
+          //   })
+          //   .catch(err => {
+          //     console.log('error')
+          //   })
+          try {
+            const res = await this.$axios.post('authorizations', this.loginForm)
+            auth.setUser(res.data.data)
+            this.$router.push('/')
+          }
+          catch (e) {
+            console.log('error')
+            this.$message.error('手机号或验证码错误')
+          }
+
+
         }
 
       })

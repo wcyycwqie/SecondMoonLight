@@ -8,6 +8,8 @@ import axios from '@/api'
 //全局注册axios
 Vue.prototype.$axios = axios
 
+import Plugin from '@/plugin'
+
 /* 
   productionTip 配置vue框架的日志级别  
   false 为开发环境日志
@@ -16,6 +18,8 @@ Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+
+Vue.use(Plugin)
 
 new Vue({
   router,

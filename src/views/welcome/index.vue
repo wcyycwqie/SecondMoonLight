@@ -1,6 +1,5 @@
 <template>
-  <div class="welcome">
-  </div>
+  <div class="welcome"></div>
 </template>
 
 <script>
@@ -13,8 +12,8 @@ export default {
 .welcome {
   width: 100%;
   height: 100%;
-  background: url('../../assets/img/1.png') no-repeat center/99% auto;
-  // background-size: cover;
+  background: url('../../assets/bg/bg1.png') no-repeat center;
+  background-size: cover;
   // filter: opacity(88%);
 }
 </style>

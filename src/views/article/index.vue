@@ -48,14 +48,32 @@
 
     <el-card>
       <div slot="header" class="clearfix">
-        <span>根据筛选条件共查询到 1 条结果：</span>
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="name" label="封面" width="180">
+        <span
+          >根据筛选条件共查询到 <strong>{{ totalCount }}</strong> 条结果：</span
+        >
+        <el-table :data="testData" style="width: 100%">
+          <el-table-column label="封面" width="210">
+            <template slot-scope="scope">
+              <input type="hidden" :value="scope.row.title" />
+              <el-image
+                :src="scope.row.cover.images[0]"
+                alt="封面图片"
+                style="width: 200px; height: 120px"
+              >
+                <div slot="error" class="image-slot">
+                  <!-- <img src="@/assets/logo.png" alt=""> -->
+                  <i
+                    class="el-icon-picture-outline"
+                    style="font-size: 120px; text-align: center;"
+                  ></i>
+                </div>
+              </el-image>
+            </template>
           </el-table-column>
-          <el-table-column prop="name" label="标题" width="180">
+          <el-table-column prop="title" label="标题" width="180">
           </el-table-column>
-          <el-table-column prop="" label="状态"> </el-table-column>
-          <el-table-column prop="" label="发布时间"> </el-table-column>
+          <el-table-column prop="status" label="状态"> </el-table-column>
+          <el-table-column prop="pubdate" label="发布时间"> </el-table-column>
           <el-table-column prop="" label="操作"> </el-table-column>
         </el-table>
       </div>
@@ -75,26 +93,29 @@ export default {
         channel_id: null,
         begin_pubdate: 'null',
         end_pubdate: 'null'
-
       },
       channelOptions: [
-
       ],
       timeArea: ['2019-01-01', '2019-02-14'],
       tableData: [{
-        name: 'hoho'
-      }]
+        coverIcon: '',
+        title: '',
+        status: '',
+        startTime: ''
+      }],
+      testData: [],
+      totalCount: 0
 
 
     }
   },
 
   created () {
+    this.getchannels()
     this.getArticles()
-
   },
   methods: {
-    async getArticles () {
+    async getchannels () {
       console.log('**********')
       const {
         data: { data, message }
@@ -102,7 +123,15 @@ export default {
       this.channelOptions = data.channels
 
 
+    },
+    async getArticles () {
+      console.log('**//**/**/**/')
+      const { data: { data, message } } = await this.$axios.get('articles')
+      console.log(data)
+      this.totalCount = data.total_count
+      this.testData = data.results
     }
+
   }
 
 }

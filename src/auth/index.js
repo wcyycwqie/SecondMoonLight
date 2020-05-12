@@ -9,5 +9,6 @@ export default {
     },
     delUser() {
         sessionStorage.removeItem(Key)
+        
     }
 }
